@@ -47,4 +47,4 @@ Without keys, the form falls back to opening the visitor's email app.
 2. On [vercel.com](https://vercel.com), click **Add New → Project**, import the repo, and keep the defaults (Vite is auto-detected).
 3. Add the EmailJS env vars, then deploy. Every `git push` redeploys automatically.
 
-After the first deploy, add `og:image` / `og:url` meta tags in `index.html` with your live URL.
+The live site is **https://divyanshdeva.tech**. `index.html` (canonical / Open Graph tags), `public/sitemap.xml` and `public/robots.txt` use that address, so update them if the domain ever changes.
