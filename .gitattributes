@@ -1,0 +1,9 @@
+# Normalise text files to LF; never touch binary assets (a CRLF rewrite corrupts PDFs).
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.woff2 binary
