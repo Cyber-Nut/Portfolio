@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://divyanshdeva.tech/sitemap.xml
+Sitemap: https://www.divyanshdeva.tech/sitemap.xml
