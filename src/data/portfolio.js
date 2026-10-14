@@ -68,8 +68,8 @@ export const services = [
 // e.g. { value: 10, suffix: 'K+', label: 'Downloads' }.
 export const stats = [
   { value: 2, suffix: '+', label: 'Years shipping production apps' },
+  { value: 11, suffix: '+', label: 'Apps live on Google Play' }, // 10 Spare Parts ERP apps + GitaPath
   { value: 3, suffix: '', label: 'Companies shipped for' },
-  { value: 2, suffix: '', label: 'App stores: Google Play & App Store' },
   { value: 7, suffix: '', label: 'SDKs & integrations in production' },
 ];
 
@@ -157,74 +157,91 @@ export const experiences = [
   },
 ];
 
-// Work highlights from company apps (each maps to a resume bullet; no screenshots yet).
-// TODO(Divyansh): when allowed, add screenshots to src/assets/projects/<id>/ and store links below.
-// `theme` colors the placeholder art until real screenshots are added.
+// Real apps. Screenshots load from src/assets/projects/<id>/*.webp (sorted by filename).
+// `captions` label each screenshot (used for multi-app ecosystems); `theme` tints the card glow.
+// TODO(Divyansh): paste Play Store URLs into `links.playStore` to show a Google Play button.
 export const projects = [
   {
-    id: 'live-streaming',
-    name: 'Live Streaming & Real-time Calling',
-    category: 'Real-time · Media',
+    id: 'gita-path',
+    name: 'GitaPath',
+    category: 'Lifestyle',
+    status: { label: 'Live on Google Play', icon: 'playStore' },
     summary:
-      'Live streaming and real-time audio/video calling with the Agora SDK, plus socket-based chat and Firebase push notifications in production apps.',
-    role: 'Flutter Developer @ TechIndika',
+      'A daily companion for the Bhagavad Gita: read every chapter, listen to verses, check in with your mood and build a reading habit.',
     features: [
-      'Agora live streaming & audio/video calling',
-      'Socket-based real-time chat on Dart streams',
-      'Async & concurrency patterns from Java/Android',
-      'Firebase Cloud Messaging push notifications',
+      'Daily verse with audio playback, favourites and sharing',
+      'Mood check-in that suggests a personalised verse',
+      '"Ask Gita": pick a topic like Anxiety & Overthinking or ask your own question',
+      'Every chapter with summaries and key takeaways, searchable by verse',
+      'Day streaks and stats to build the habit',
     ],
-    tags: ['Flutter', 'Agora RTC', 'Firebase', 'WebSockets'],
-    links: { playStore: '', appStore: '', github: '', video: '' },
-    theme: ['#13b9fd', '#7c3aed'],
+    tags: ['Flutter', 'Audio', 'Google & phone sign-in'],
+    links: { playStore: '' },
+    theme: ['#fb923c', '#fbbf24'],
   },
   {
-    id: 'payments',
-    name: 'Payments, Subscriptions & Sign-in',
-    category: 'Monetization · Auth',
+    id: 'packsmart-ai',
+    name: 'PackSmart AI',
+    category: 'Productivity · Moving & storage',
     summary:
-      'Monetization and authentication for apps live on Google Play and the App Store: in-app purchases, the Cashfree gateway and multi-provider sign-in.',
-    role: 'Flutter Developer @ TechIndika',
+      'Organise everything you pack, store or move: print QR labels for your containers, then scan one to see exactly what is inside.',
     features: [
-      'Subscriptions, consumables & non-consumables',
-      'Cashfree payment gateway integration',
-      'Google, Apple & MSG91 OTP sign-in',
-      'Full Play Store policy compliance for releases',
+      'Generate and print QR labels for boxes and containers',
+      "Scan a code to see a container's contents instantly",
+      'Organise by homes and rooms with labels, search and sorting',
+      'Modes for individuals and for moving & self-storage companies',
     ],
-    tags: ['Flutter', 'In-App Purchases', 'Cashfree', 'MSG91'],
-    links: { playStore: '', appStore: '', github: '', video: '' },
-    theme: ['#22c55e', '#0ea5e9'],
+    tags: ['Flutter', 'QR codes', 'Scanning'],
+    links: { playStore: '' },
+    theme: ['#3b82f6', '#60a5fa'],
   },
   {
-    id: 'offline-erp',
-    name: 'Offline-first ERP',
-    category: 'Enterprise · Offline-first',
+    id: 'spare-parts',
+    name: 'Spare Parts ERP',
+    category: 'Enterprise ERP · Mining',
+    status: { label: '10 apps on Google Play', icon: 'playStore' },
     summary:
-      'ERP apps that keep working without internet: local persistence with Drift (SQLite) and seamless sync between offline and online states.',
-    role: 'Flutter Developer @ TechIndika',
+      'An ERP ecosystem for the mining industry: 10 role-specific apps that run spare-parts operations, from the director down to the store.',
     features: [
-      'Drift (SQLite) local database',
-      'Seamless offline ↔ online synchronisation',
-      'Riverpod + GetX state management',
+      '10 separate apps, one for each role in the operation',
+      'Director, Mechanical Manager, Mechanical Supervisor, Store Manager and more',
+      'Sign in with employee ID, email or mobile number',
     ],
-    tags: ['Flutter', 'Drift', 'SQLite', 'Riverpod', 'GetX'],
-    links: { playStore: '', appStore: '', github: '', video: '' },
-    theme: ['#5eead4', '#02569b'],
+    tags: ['Flutter', 'ERP', 'Role-based apps'],
+    captions: ['Director · Parts Operations', 'Mechanical Manager', 'Mechanical Supervisor', 'Store Manager'],
+    links: { playStore: '' },
+    theme: ['#3b82f6', '#1e3a8a'],
   },
   {
-    id: 'arvyax',
-    name: 'Arvyax IoT Companion',
-    category: 'IoT · Bluetooth',
-    summary:
-      'A full-featured Flutter app backed by Node.js and MongoDB, with BLE / Bluetooth communication connecting it to the Arvyax IoT product.',
-    role: 'Flutter Developer Intern @ RevoltronX',
+    id: 'leaders-wish',
+    name: "Leader's Wish",
+    category: 'Enterprise ERP · Community',
+    status: { label: '3-app ecosystem', icon: 'smartphone' },
+    summary: 'A 3-app ERP ecosystem to manage a social circle and distribute goodies within it.',
     features: [
-      'BLE / Bluetooth link to the Arvyax device',
-      'Secure authentication + Riverpod state',
-      'Node.js + MongoDB backend, UI through API',
+      "The Leader's Wish app plus dedicated Assembly and District Coordinator apps",
+      'Manage the members of a social circle',
+      'Organise goodies distribution across the circle',
     ],
-    tags: ['Flutter', 'BLE', 'Riverpod', 'Node.js', 'MongoDB'],
-    links: { playStore: '', appStore: '', github: '', video: '' },
-    theme: ['#f59e0b', '#ef4444'],
+    tags: ['Flutter', 'ERP', 'Role-based apps'],
+    captions: ["Leader's Wish", 'Assembly Coordinator', 'District Coordinator'],
+    links: { playStore: '' },
+    theme: ['#6366f1', '#8b5cf6'],
+  },
+  {
+    id: 'live-connect',
+    name: 'Live Connect',
+    category: 'Customer support',
+    status: { label: 'Internal tool', icon: 'briefcase' },
+    summary:
+      'A support-chat app for agents that can be connected to any app, so a team answers its users from one agent workspace.',
+    features: [
+      'Agent workspace with secure sign-in',
+      'Real-time chat between support agents and users',
+      'Connects to any app as its support channel',
+    ],
+    tags: ['Flutter', 'Real-time chat'],
+    links: { playStore: '' },
+    theme: ['#f43f5e', '#f97316'],
   },
 ];

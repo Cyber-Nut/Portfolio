@@ -1,87 +1,90 @@
-import { useCallback, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { projects } from '../../data/portfolio';
 import { projectMedia } from '../../data/assets';
 import SectionWrapper from '../../hoc/SectionWrapper';
-import { fadeIn } from '../../utils/motion';
+import { hasWebGL } from '../../utils/device';
+import { EASE_OUT } from '../../utils/motion';
 import Icon from '../ui/Icon';
-import PhoneFrame from '../ui/PhoneFrame';
 import ProjectLinks from '../ui/ProjectLinks';
-import ProjectModal from '../ui/ProjectModal';
+import ScreenSwiper from '../ui/ScreenSwiper';
 import SectionHeading from '../ui/SectionHeading';
 import Tag from '../ui/Tag';
-import TiltCard from '../ui/TiltCard';
 
-function ProjectCard({ project, index, onOpen }) {
-  const { icon, screenshots } = projectMedia(project.id);
-  const [a, b] = project.theme;
+const ProjectsCanvas = lazy(() => import('../canvas/ProjectsCanvas'));
+
+function ProjectCard({ project, use3D, reduceMotion }) {
+  const { screenshots } = projectMedia(project.id);
+  // Mount the 3D phone only after the card has faded in (the canvas can't fade with it).
+  const [revealed, setRevealed] = useState(false);
 
   return (
-    <TiltCard
-      as="article"
-      max={7}
-      variants={fadeIn('up', index * 0.12)}
-      className="group glass-fill gradient-border flex flex-col overflow-hidden rounded-3xl"
+    <motion.article
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.7, ease: EASE_OUT }}
+      onAnimationComplete={() => setRevealed(true)}
+      className="glass-fill gradient-border flex w-full flex-col overflow-hidden rounded-3xl md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
     >
-      <div
-        className="relative h-64 overflow-hidden"
-        style={{ background: `radial-gradient(120% 90% at 50% 0%, ${a}55, transparent 60%), linear-gradient(160deg, ${a}1f, ${b}33)` }}
-      >
-        <div className="bg-grid absolute inset-0 opacity-50" aria-hidden="true" />
-        <div className="absolute left-1/2 top-8 flex -translate-x-1/2 items-start gap-4">
-          <PhoneFrame
-            src={screenshots[0]}
-            alt={`${project.name} screenshot`}
-            title={project.name}
-            theme={project.theme}
-            className="w-32 -rotate-6 transition-transform duration-500 group-hover:-translate-y-2 group-hover:-rotate-3"
-          />
-          <PhoneFrame
-            src={screenshots[1]}
-            alt=""
-            title={project.name}
-            theme={[b, a]}
-            className="mt-7 w-32 rotate-6 transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-3"
-          />
-        </div>
-        {icon && <img src={icon} alt="" className="absolute right-4 top-4 size-11 rounded-xl ring-1 ring-white/20" />}
-        {import.meta.env.DEV && project.draft && (
-          <span className="absolute left-4 top-4 rounded-full border border-dashed border-amber-300/60 bg-amber-300/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-amber-200">
-            Draft content
-          </span>
-        )}
-      </div>
+      <ScreenSwiper
+        name={project.name}
+        screens={screenshots}
+        captions={project.captions}
+        theme={project.theme}
+        use3D={use3D}
+        show3D={revealed}
+        reduceMotion={reduceMotion}
+      />
 
       <div className="flex flex-1 flex-col p-6">
-        <p className="text-xs font-medium uppercase tracking-[0.18em] text-flutter">{project.category}</p>
-        <h3 className="mt-2 font-display text-xl font-semibold text-ink">
-          {/* Stretched button: the whole card opens the details modal. */}
-          <button type="button" onClick={onOpen} className="text-left after:absolute after:inset-0 after:content-['']">
-            {project.name}
-          </button>
-        </h3>
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted">{project.summary}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.tags.slice(0, 4).map((t) => (
-            <Tag key={t}>{t}</Tag>
-          ))}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          {project.status && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-teal/30 bg-teal/10 px-2.5 py-1 text-[11px] font-semibold text-teal">
+              <Icon name={project.status.icon} className="size-3" />
+              {project.status.label}
+            </span>
+          )}
+          <span className="text-xs font-medium uppercase tracking-[0.18em] text-flutter">{project.category}</span>
         </div>
-        <div className="mt-auto flex items-center justify-between gap-4 pt-6">
-          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-ink transition-colors group-hover:text-flutter">
-            View details
-            <Icon name="arrowRight" className="size-4 transition-transform group-hover:translate-x-1" />
-          </span>
-          <div className="relative z-10">
-            <ProjectLinks links={project.links} compact />
+
+        <h3 className="mt-3 font-display text-2xl font-semibold text-ink">{project.name}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted">{project.summary}</p>
+
+        <h4 className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-ink/80">What it does</h4>
+        <ul className="mt-3 space-y-2">
+          {project.features.map((f) => (
+            <li key={f} className="flex gap-2.5 text-sm leading-relaxed text-muted">
+              <Icon name="check" className="mt-0.5 size-4 shrink-0 text-teal" />
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-auto flex flex-wrap items-end justify-between gap-3 pt-6">
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((t) => (
+              <Tag key={t}>{t}</Tag>
+            ))}
           </div>
+          <ProjectLinks links={project.links} compact />
         </div>
       </div>
-    </TiltCard>
+    </motion.article>
   );
 }
 
 function Projects() {
-  const [selected, setSelected] = useState(null);
-  const close = useCallback(() => setSelected(null), []);
+  const reduceMotion = !!useReducedMotion();
+  const webgl = useMemo(() => hasWebGL(), []);
+  const area = useRef(null);
+  const near = useInView(area, { margin: '100% 0px' });
+  const [canvasMounted, setCanvasMounted] = useState(false);
+
+  useEffect(() => {
+    if (near) setCanvasMounted(true);
+  }, [near]);
 
   return (
     <>
@@ -92,16 +95,23 @@ function Projects() {
             Selected <span className="text-gradient">projects</span>
           </>
         }
-        description="Highlights from production apps I've built at TechIndika and RevoltronX. Open a card to see what I built and the stack behind it."
+        description="Production apps I've built and shipped, from a 10-app ERP ecosystem to consumer apps on Google Play. Swipe the phones to look inside."
       />
 
-      <div className="mt-14 grid gap-6 md:grid-cols-2">
-        {projects.map((p, i) => (
-          <ProjectCard key={p.id} project={p} index={i % 2} onOpen={() => setSelected(p)} />
+      <div ref={area} className="mt-14 flex flex-wrap justify-center gap-6">
+        {projects.map((p) => (
+          <ProjectCard key={p.id} project={p} use3D={webgl} reduceMotion={reduceMotion} />
         ))}
       </div>
 
-      <ProjectModal project={selected} onClose={close} />
+      {webgl &&
+        canvasMounted &&
+        createPortal(
+          <Suspense fallback={null}>
+            <ProjectsCanvas active={near} />
+          </Suspense>,
+          document.body,
+        )}
     </>
   );
 }

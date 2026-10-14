@@ -24,10 +24,12 @@ Images are picked up automatically, so just drop files into these folders (no co
 | `src/assets/profile.webp` (or `.png` / `.jpg`) | About-section photo |
 | `src/assets/screens/*.png` | Screens cycling on the 3D hero phone (sorted by filename: `01.png`, `02.png`, …) |
 | `src/assets/logos/<id>.png` | Experience logos. `<id>` = the experience `id` (`techindika`, `revoltronx`, `insri`) |
-| `src/assets/projects/<project-id>/*.png` | Project screenshots (sorted by filename). Add `icon.png` for the app icon |
+| `src/assets/projects/<project-id>/*.webp` | Screens on that project's swipeable 3D phone (sorted by filename). Optional `captions` in `portfolio.js` label each one |
 | `public/resume/Divyansh_Resume.pdf` | "Download résumé" buttons |
 
-Until real images are added, the site shows designed placeholders. Draft projects show a "Draft content" badge in dev mode only.
+Screenshots work best at ~540px wide (WebP), with the Android navigation bar cropped off. Until real images are added, the site shows designed placeholders.
+
+All project phones share **one** WebGL canvas (`ProjectsCanvas.jsx` + drei `View`), so adding more projects doesn't add more 3D contexts.
 
 The root `/assets` folder holds your raw originals (photos, logos, resume). It's git-ignored; the web-ready copies live in `src/assets/` and `public/`. `public/og-image.png` is the 1200×630 link-preview image.
 
