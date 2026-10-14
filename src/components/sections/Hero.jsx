@@ -11,6 +11,8 @@ import PhoneFrame from '../ui/PhoneFrame';
 import Typewriter from '../ui/Typewriter';
 
 const PhoneCanvas = lazy(() => import('../canvas/PhoneCanvas'));
+const [firstName, ...rest] = personal.name.split(' ');
+const lastName = rest.join(' ');
 
 export default function Hero({ ready }) {
   const reduce = !!useReducedMotion();
@@ -43,6 +45,15 @@ export default function Hero({ ready }) {
               Open to new opportunities
             </motion.div>
           )}
+          {!personal.openToWork && personal.badge && (
+            <motion.div
+              variants={fadeIn('up', 0, 0.6, 20)}
+              className="inline-flex items-center gap-2 rounded-full border border-flutter/30 bg-flutter/10 px-3.5 py-1.5 text-xs font-medium text-flutter"
+            >
+              <Icon name="sparkles" className="size-3.5" />
+              {personal.badge}
+            </motion.div>
+          )}
 
           <motion.p variants={textVariant()} className="mt-7 font-display text-lg text-muted sm:text-xl">
             Hi there, I&apos;m
@@ -51,8 +62,12 @@ export default function Hero({ ready }) {
             variants={textVariant()}
             className="mt-1 font-display text-[3.6rem] font-bold leading-[0.95] tracking-tight text-ink xs:text-7xl sm:text-8xl xl:text-[7rem]"
           >
-            {personal.name}
-            <span className="text-teal">.</span>
+            {/* First name on its own line, surname + accent dot below */}
+            <span className="block">{firstName}</span>
+            <span className="block">
+              {lastName}
+              <span className="text-teal">.</span>
+            </span>
           </motion.h1>
           <motion.p variants={textVariant()} className="mt-5 min-h-[1.3em] font-display text-2xl font-medium text-ink sm:text-3xl">
             <Typewriter words={personal.roles} />

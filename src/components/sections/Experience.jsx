@@ -66,9 +66,14 @@ function TimelineItem({ exp, left }) {
               )}
             </p>
           </div>
-          {exp.current && (
-            <span className="rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal ring-1 ring-teal/30">Current</span>
-          )}
+          <div className="flex flex-wrap gap-2">
+            {exp.type && (
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-ink/80 ring-1 ring-white/10">{exp.type}</span>
+            )}
+            {exp.current && (
+              <span className="rounded-full bg-teal/10 px-3 py-1 text-xs font-medium text-teal ring-1 ring-teal/30">Current</span>
+            )}
+          </div>
         </div>
         <p className="mt-2 text-sm text-muted md:hidden">{exp.date}</p>
 
@@ -107,7 +112,7 @@ function Experience() {
             Where I&apos;ve <span className="text-gradient">shipped</span>
           </>
         }
-        description="From internships to leading app releases: the teams I've built with and what I delivered."
+        description="From internships to full-time: the teams I've built with, what I delivered, and how AI shaped the work."
       />
 
       <div ref={track} className="relative mt-16">

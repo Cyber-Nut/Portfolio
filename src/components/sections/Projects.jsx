@@ -46,11 +46,23 @@ function ProjectCard({ project, use3D, reduceMotion }) {
               {project.status.label}
             </span>
           )}
-          <span className="text-xs font-medium uppercase tracking-[0.18em] text-flutter">{project.category}</span>
+          {project.aiFeatures && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-flutter/40 bg-flutter/10 px-2.5 py-1 text-[11px] font-semibold text-flutter">
+              <Icon name="sparkles" className="size-3" />
+              AI features
+            </span>
+          )}
         </div>
+        <p className="mt-3 text-xs font-medium uppercase tracking-[0.18em] text-flutter">{project.category}</p>
 
-        <h3 className="mt-3 font-display text-2xl font-semibold text-ink">{project.name}</h3>
+        <h3 className="mt-1.5 font-display text-2xl font-semibold text-ink">{project.name}</h3>
         <p className="mt-2 text-sm leading-relaxed text-muted">{project.summary}</p>
+        {project.company && (
+          <p className="mt-3 flex items-center gap-1.5 text-xs text-ink/70">
+            <Icon name="sparkles" className="size-3.5 text-flutter" />
+            Built at {project.company} with an AI-augmented workflow
+          </p>
+        )}
 
         <h4 className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-ink/80">What it does</h4>
         <ul className="mt-3 space-y-2">
@@ -95,7 +107,7 @@ function Projects() {
             Selected <span className="text-gradient">projects</span>
           </>
         }
-        description="Production apps I've built and shipped, from a 10-app ERP ecosystem to consumer apps on Google Play. Swipe the phones to look inside."
+        description="Production apps I've built at TechIndika with an AI-augmented workflow, several with AI at their core. Swipe the phones to look inside."
       />
 
       <div ref={area} className="mt-14 flex flex-wrap justify-center gap-6">

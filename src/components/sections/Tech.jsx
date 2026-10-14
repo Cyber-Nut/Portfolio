@@ -5,6 +5,7 @@ import { techIcon } from '../../data/assets';
 import SectionWrapper from '../../hoc/SectionWrapper';
 import { hasWebGL, useMediaQuery } from '../../utils/device';
 import { fadeIn } from '../../utils/motion';
+import Icon from '../ui/Icon';
 import SectionHeading from '../ui/SectionHeading';
 
 const TechBallsCanvas = lazy(() => import('../canvas/TechBallsCanvas'));
@@ -72,18 +73,41 @@ function Tech() {
         )}
       </motion.div>
 
-      <motion.div variants={fadeIn('up', 0.2)} className="mt-14 text-center">
-        <p className="text-xs font-medium uppercase tracking-[0.25em] text-muted">Also fluent in</p>
-        <ul className="mx-auto mt-5 flex max-w-4xl flex-wrap justify-center gap-2.5">
-          {toolbox.map((t) => (
-            <li
-              key={t}
-              className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-ink/90 transition hover:border-flutter/50 hover:text-flutter"
+      <motion.div variants={fadeIn('up', 0.2)} className="mx-auto mt-14 max-w-5xl">
+        <p className="text-center text-xs font-medium uppercase tracking-[0.25em] text-muted">Also fluent in</p>
+        <dl className="mt-6 space-y-2">
+          {toolbox.map((group) => (
+            <div
+              key={group.label}
+              className={`flex flex-col gap-3 rounded-2xl px-4 py-4 sm:flex-row sm:items-start sm:gap-6 sm:px-6 ${
+                group.ai ? 'gradient-border bg-flutter/[0.06]' : 'border-b border-white/5'
+              }`}
             >
-              {t}
-            </li>
+              <dt
+                className={`flex shrink-0 items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] sm:w-44 sm:pt-2 ${
+                  group.ai ? 'text-flutter' : 'text-muted'
+                }`}
+              >
+                {group.ai && <Icon name="sparkles" className="size-4" />}
+                {group.label}
+              </dt>
+              <dd className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className={`rounded-full border px-3.5 py-1.5 text-sm transition ${
+                      group.ai
+                        ? 'border-flutter/40 bg-flutter/10 text-flutter hover:border-flutter'
+                        : 'border-white/10 bg-white/[0.03] text-ink/90 hover:border-flutter/50 hover:text-flutter'
+                    }`}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </motion.div>
     </>
   );

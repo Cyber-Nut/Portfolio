@@ -48,7 +48,8 @@ export default function Footer() {
 
       <div className="section-x mt-10 flex flex-col gap-2 border-t border-white/5 pt-6 text-xs text-muted/80 sm:flex-row sm:justify-between">
         <p>
-          © {new Date().getFullYear()} {personal.name}. Built with React, Three.js, Framer Motion & Tailwind CSS.
+          © {new Date().getFullYear()} {personal.name}. Built with React, Three.js, Framer Motion & Tailwind CSS, using an
+          AI-augmented workflow (Claude Code).
         </p>
         <p>
           Inspired by{' '}

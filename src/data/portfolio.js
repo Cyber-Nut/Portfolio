@@ -9,21 +9,23 @@
 // `**text**` inside strings renders as highlighted text.
 
 export const personal = {
-  name: 'Divyansh',
-  roles: ['Flutter Developer', 'Mobile App Engineer', 'AI-Augmented Developer'],
-  tagline: 'I ship production Android & iOS apps end to end, from payments to real-time video and offline-first sync.',
+  name: 'Divyansh Gupta',
+  roles: ['Mobile App Developer', 'AI-Augmented Developer', 'Flutter Developer'],
+  badge: 'AI-augmented mobile developer', // small chip above the hero name
+  tagline: 'I ship production Android & iOS apps end to end, built with an AI-augmented workflow and packed with AI-powered features.',
   location: 'Uttarakhand, India',
   email: 'gdeva368@gmail.com',
-  resume: '/resume/Divyansh_Resume.pdf',
+  resume: '/resume/Divyansh_Gupta_Resume.pdf',
   openToWork: false, // shows the "Open to new opportunities" badge in the hero
   bio: [
-    "I'm a Flutter developer from Uttarakhand, India, with **2+ years** of experience shipping production **Android and iOS** apps end to end. At **TechIndika** I own releases on Google Play and the App Store: authentication, in-app purchases, payments, real-time video and offline-first sync.",
-    'I work with an **AI-augmented workflow** (Claude Code) for scaffolding, refactoring, test generation and debugging, while owning the architecture and reviewing every change, so features move from spec to store release faster without trading off quality. My roots are in **Java and the Android SDK**, and outside of code I co-founded **Luminaries**, where I teach mathematics.',
+    "I'm a mobile app developer from Uttarakhand, India, with **1+ year of full-time experience** and a year of prior internships, shipping production **Android and iOS** apps end to end. **Flutter** is my primary stack, with hands-on work in **native Android (Java)** and **React Native**, so I pick the right tool for the product rather than one framework.",
+    'AI runs through both how I build and what I ship. I work with an **AI-augmented workflow** (Claude Code) for scaffolding, refactoring, test generation and debugging, while owning the architecture (**Clean Architecture, MVVM**) and reviewing every change. And I ship **AI-powered features**: AI answers and mood-based verses in GitaPath, photo-based item recognition in PackSmart AI, and part identification and demand insights across a 10-app ERP.',
   ],
   facts: [
     { icon: 'mapPin', label: 'Based in', value: 'Uttarakhand, India' },
     { icon: 'cap', label: 'Education', value: 'B.Tech IT · HNB Garhwal University' },
     { icon: 'briefcase', label: 'Currently', value: 'Flutter Developer @ TechIndika' },
+    { icon: 'sparkles', label: 'Builds with', value: 'AI-augmented workflow · Claude Code' },
   ],
 };
 
@@ -43,33 +45,33 @@ export const navLinks = [
 
 export const services = [
   {
+    icon: 'sparkles',
+    title: 'AI-Augmented Development',
+    text: 'Claude Code for scaffolding, refactors, test generation and debugging, while I own the architecture and review every change.',
+  },
+  {
+    icon: 'cpu',
+    title: 'AI-Powered App Features',
+    text: 'AI answers, personalised recommendations, photo-based recognition and demand insights, built into production apps.',
+  },
+  {
     icon: 'flutter',
-    title: 'Flutter App Development',
-    text: 'End-to-end Android & iOS apps with clean architecture, Riverpod / GetX state and pixel-perfect UI, all the way to the store release.',
+    title: 'Flutter, Native Android & RN',
+    text: 'Flutter first, plus native Android (Java) and React Native, on Clean Architecture and MVVM, from first screen to store release.',
   },
   {
     icon: 'zap',
-    title: 'Real-time & Streaming',
-    text: 'Agora live streaming and audio/video calling, socket-based chat and Firebase push notifications.',
-  },
-  {
-    icon: 'wallet',
-    title: 'Payments & Offline-first',
-    text: 'Subscriptions and in-app purchases, Cashfree payments, and Drift-powered offline sync that just works.',
-  },
-  {
-    icon: 'sparkles',
-    title: 'AI-Augmented Development',
-    text: 'Claude Code for scaffolding, refactors, tests and debugging, while I own the architecture and review every change.',
+    title: 'Real-time, Payments & Offline',
+    text: 'Agora streaming and calls, socket chat, in-app purchases, Cashfree and Drift-powered offline sync.',
   },
 ];
 
 // TODO(Divyansh): add a real "downloads / active users" figure from Play Console when you have it,
 // e.g. { value: 10, suffix: 'K+', label: 'Downloads' }.
 export const stats = [
-  { value: 2, suffix: '+', label: 'Years shipping production apps' },
+  { value: 1, suffix: '+', label: 'Year full-time, plus a year of internships' },
   { value: 11, suffix: '+', label: 'Apps live on Google Play' }, // 10 Spare Parts ERP apps + GitaPath
-  { value: 3, suffix: '', label: 'Companies shipped for' },
+  { value: 3, suffix: '', label: 'Products with AI features' }, // GitaPath, PackSmart AI, Spare Parts ERP
   { value: 7, suffix: '', label: 'SDKs & integrations in production' },
 ];
 
@@ -77,11 +79,12 @@ export const stats = [
 export const technologies = [
   { name: 'Flutter', icon: 'flutter' },
   { name: 'Dart', icon: 'dart' },
+  { name: 'Claude Code', icon: 'claude' },
   { name: 'Java', icon: 'java' },
   { name: 'Android SDK', icon: 'android' },
+  { name: 'React Native', icon: 'react' },
   { name: 'Firebase', icon: 'firebase' },
   { name: 'SQLite / Drift', icon: 'sqlite' },
-  { name: 'React Native', icon: 'react' },
   { name: 'JavaScript', icon: 'javascript' },
   { name: 'TypeScript', icon: 'typescript' },
   { name: 'Node.js', icon: 'nodejs' },
@@ -91,24 +94,29 @@ export const technologies = [
   { name: 'C', icon: 'c' },
 ];
 
+// Grouped like the resume's Technical Skills. `ai: true` gets the highlighted style.
 export const toolbox = [
-  'Riverpod',
-  'GetX',
-  'Drift',
-  'Offline-first sync',
-  'WebSockets',
-  'REST APIs',
-  'Agora RTC',
-  'Firebase FCM & Auth',
-  'In-App Purchases',
-  'Cashfree',
-  'MSG91',
-  'Google & Apple Sign-In',
-  'BLE',
-  'CodeMagic CI/CD',
-  'Google Play Console',
-  'App Store Connect',
-  'Claude Code',
+  {
+    label: 'AI-Assisted Dev',
+    ai: true,
+    items: [
+      'Claude Code',
+      'Prompt-driven code generation',
+      'AI code review',
+      'AI-assisted refactoring',
+      'AI testing & debugging',
+      'ChatGPT',
+      'GitHub Copilot',
+      'Gemini',
+    ],
+  },
+  { label: 'Architecture', items: ['Clean Architecture', 'MVVM', 'Repository pattern'] },
+  { label: 'State & Data', items: ['Riverpod', 'GetX', 'Drift (SQLite)', 'Offline-first sync', 'REST APIs', 'WebSockets'] },
+  {
+    label: 'Integrations',
+    items: ['Firebase (FCM, Auth)', 'Agora RTC', 'Cashfree', 'In-App Purchases', 'MSG91', 'Google & Apple Sign-In', 'BLE'],
+  },
+  { label: 'Delivery', items: ['Git & GitHub', 'CodeMagic CI/CD', 'Google Play Console', 'App Store Connect'] },
 ];
 
 export const experiences = [
@@ -117,65 +125,75 @@ export const experiences = [
     company: 'TechIndika',
     url: 'https://techindika.com/',
     role: 'Junior Flutter Developer',
+    type: 'Full-time',
     date: 'Aug 2025 – Present',
     current: true,
     points: [
-      'Shipped and maintain **multiple production apps** on Google Play and the App Store, owning releases end to end with **Google, Apple & MSG91 OTP** sign-in and full **Play Store policy compliance**.',
+      'Build across all my projects with an **AI-assisted workflow** (Claude Code in VS Code) for scaffolding, refactors and bug triage, cutting turnaround on features and fixes while keeping full ownership of design and code review.',
+      'Shipped **AI-powered features**: AI answers, mood-based verses and insights in **GitaPath**, photo-based item recognition in **PackSmart AI**, and part identification, stock & demand insights and an AI assistant across the **Spare Parts ERP**.',
+      'Shipped and maintain **multiple production mobile apps** on Google Play and the App Store, owning releases end to end with **Google, Apple & MSG91 OTP** sign-in and full **Play Store policy compliance**.',
       'Built **offline-first ERP** apps using **Drift (SQLite)** with **Riverpod** and **GetX**, with local persistence and seamless sync between offline and online states.',
       'Implemented **in-app purchases** (subscriptions, consumables, non-consumables) and integrated the **Cashfree** payment gateway.',
       'Integrated **Agora SDK** for live streaming and real-time audio/video calling, and **Firebase** for push notifications.',
       'Built **real-time chat** and socket-based features, applying async and concurrency patterns from Java/Android to **Dart streams**.',
-      'Adopted an **AI-assisted workflow** (Claude Code in VS Code) for scaffolding, refactors and bug triage, cutting turnaround while keeping full ownership of design and code review.',
     ],
-    tags: ['Flutter', 'Riverpod', 'GetX', 'Drift', 'Agora', 'Firebase', 'Claude Code'],
+    tags: ['Claude Code', 'AI features', 'Flutter', 'Riverpod', 'GetX', 'Drift', 'Agora', 'Firebase'],
   },
   {
     id: 'revoltronx',
     company: 'RevoltronX',
     url: 'https://www.revoltronx.com/',
     role: 'Flutter Developer Intern',
+    type: 'Internship',
     date: 'Dec 2024 – Aug 2025',
     points: [
-      'Developed and launched a full-featured **Flutter app** backed by **Node.js** and **MongoDB**, from UI through API integration.',
+      'Developed and launched a full-featured mobile app in **Flutter** backed by **Node.js** and **MongoDB**, from UI through API integration.',
       'Implemented secure **authentication** and **Riverpod** state management for a scalable app architecture.',
       'Built **BLE / Bluetooth** communication connecting the app to the **Arvyax IoT** product.',
       'Delivered responsive, pixel-perfect UI wired to dynamic backend APIs.',
+      'Used **AI coding assistants** (ChatGPT, GitHub Copilot, Claude, Gemini) throughout development.',
     ],
-    tags: ['Flutter', 'Riverpod', 'Node.js', 'MongoDB', 'BLE'],
+    tags: ['Flutter', 'Riverpod', 'Node.js', 'MongoDB', 'BLE', 'AI-assisted'],
   },
   {
     id: 'insri',
     company: 'inSri Tech Solutions',
     url: 'https://www.insri.in/',
     role: 'Android Developer Intern',
+    type: 'Internship',
     date: 'Sep 2024 – Nov 2024',
     points: [
       'Built cross-platform mobile UI in **React Native** and JavaScript using modular, reusable components.',
-      'Worked on Android features with **Java** and the **Android SDK**; integrated **RESTful APIs** for real-time data updates.',
+      'Worked on native Android features with **Java** and the **Android SDK**; integrated **RESTful APIs** for real-time data updates.',
+      'Used **AI coding assistants** (ChatGPT, GitHub Copilot, Claude, Gemini) throughout development.',
     ],
-    tags: ['React Native', 'JavaScript', 'Java', 'Android SDK'],
+    tags: ['React Native', 'JavaScript', 'Java', 'Android SDK', 'AI-assisted'],
   },
 ];
 
-// Real apps. Screenshots load from src/assets/projects/<id>/*.webp (sorted by filename).
-// `captions` label each screenshot (used for multi-app ecosystems); `theme` tints the card glow.
+// Real apps, all built at TechIndika with an AI-augmented workflow.
+// Screenshots load from src/assets/projects/<id>/*.webp (sorted by filename).
+// `captions` label each screenshot (used for multi-app ecosystems); `theme` tints the card glow;
+// `aiFeatures` marks apps whose users get AI-powered features.
 // TODO(Divyansh): paste Play Store URLs into `links.playStore` to show a Google Play button.
 export const projects = [
   {
     id: 'gita-path',
     name: 'GitaPath',
     category: 'Lifestyle',
+    company: 'TechIndika',
+    aiFeatures: true,
     status: { label: 'Live on Google Play', icon: 'playStore' },
     summary:
-      'A daily companion for the Bhagavad Gita: read every chapter, listen to verses, check in with your mood and build a reading habit.',
+      'An AI-powered companion for the Bhagavad Gita: ask life questions and get answers grounded in the Gita, receive verses matched to your mood, and build a daily reading habit.',
     features: [
+      'AI-powered "Ask Gita": ask about anxiety, overthinking or anything else and get answers grounded in the Gita',
+      'Mood-based AI verse recommendations',
+      'AI insights with personalised reflections',
       'Daily verse with audio playback, favourites and sharing',
-      'Mood check-in that suggests a personalised verse',
-      '"Ask Gita": pick a topic like Anxiety & Overthinking or ask your own question',
-      'Every chapter with summaries and key takeaways, searchable by verse',
-      'Day streaks and stats to build the habit',
+      'Every chapter with summaries and key takeaways, plus day streaks',
     ],
-    tags: ['Flutter', 'Audio', 'Google & phone sign-in'],
+    tags: ['Flutter', 'AI answers', 'AI recommendations', 'Audio'],
     links: { playStore: '' },
     theme: ['#fb923c', '#fbbf24'],
   },
@@ -183,15 +201,18 @@ export const projects = [
     id: 'packsmart-ai',
     name: 'PackSmart AI',
     category: 'Productivity · Moving & storage',
+    company: 'TechIndika',
+    aiFeatures: true,
     summary:
-      'Organise everything you pack, store or move: print QR labels for your containers, then scan one to see exactly what is inside.',
+      'Organise everything you pack, store or move: snap a photo and AI identifies the items, print a QR label, then scan it to see exactly what is inside.',
     features: [
+      'AI identifies the items in a box from a photo',
       'Generate and print QR labels for boxes and containers',
       "Scan a code to see a container's contents instantly",
       'Organise by homes and rooms with labels, search and sorting',
       'Modes for individuals and for moving & self-storage companies',
     ],
-    tags: ['Flutter', 'QR codes', 'Scanning'],
+    tags: ['Flutter', 'AI image recognition', 'QR codes'],
     links: { playStore: '' },
     theme: ['#3b82f6', '#60a5fa'],
   },
@@ -199,15 +220,19 @@ export const projects = [
     id: 'spare-parts',
     name: 'Spare Parts ERP',
     category: 'Enterprise ERP · Mining',
+    company: 'TechIndika',
+    aiFeatures: true,
     status: { label: '10 apps on Google Play', icon: 'playStore' },
     summary:
-      'An ERP ecosystem for the mining industry: 10 role-specific apps that run spare-parts operations, from the director down to the store.',
+      'An AI-enabled ERP ecosystem for the mining industry: 10 role-specific apps that run spare-parts operations, from the director down to the store.',
     features: [
-      '10 separate apps, one for each role in the operation',
-      'Director, Mechanical Manager, Mechanical Supervisor, Store Manager and more',
+      'AI part identification',
+      'AI stock & demand insights that flag what to reorder',
+      'AI search assistant for parts, requests and records in plain language',
+      '10 separate apps, one per role: Director, Mechanical Manager, Supervisor, Store Manager and more',
       'Sign in with employee ID, email or mobile number',
     ],
-    tags: ['Flutter', 'ERP', 'Role-based apps'],
+    tags: ['Flutter', 'AI assistant', 'AI insights', 'ERP'],
     captions: ['Director · Parts Operations', 'Mechanical Manager', 'Mechanical Supervisor', 'Store Manager'],
     links: { playStore: '' },
     theme: ['#3b82f6', '#1e3a8a'],
@@ -216,6 +241,7 @@ export const projects = [
     id: 'leaders-wish',
     name: "Leader's Wish",
     category: 'Enterprise ERP · Community',
+    company: 'TechIndika',
     status: { label: '3-app ecosystem', icon: 'smartphone' },
     summary: 'A 3-app ERP ecosystem to manage a social circle and distribute goodies within it.',
     features: [
@@ -232,6 +258,7 @@ export const projects = [
     id: 'live-connect',
     name: 'Live Connect',
     category: 'Customer support',
+    company: 'TechIndika',
     status: { label: 'Internal tool', icon: 'briefcase' },
     summary:
       'A support-chat app for agents that can be connected to any app, so a team answers its users from one agent workspace.',

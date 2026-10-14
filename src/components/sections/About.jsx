@@ -26,7 +26,8 @@ function About() {
         eyebrow="About me"
         title={
           <>
-            Turning ideas into <span className="text-gradient">delightful apps</span>
+            Building apps with <span className="text-gradient">AI</span>,
+            <br className="hidden sm:inline" /> and <span className="text-gradient">AI into apps</span>
           </>
         }
       />
@@ -67,7 +68,7 @@ function About() {
             </motion.p>
           ))}
 
-          <motion.ul variants={fadeIn('up', 0.2)} className="mt-8 grid gap-3 sm:grid-cols-3">
+          <motion.ul variants={fadeIn('up', 0.2)} className="mt-8 grid gap-3 sm:grid-cols-2">
             {personal.facts.map((f) => (
               <li key={f.label} className="glass rounded-2xl p-4">
                 <Icon name={f.icon} className="size-5 text-flutter" />
